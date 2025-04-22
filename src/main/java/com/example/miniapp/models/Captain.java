@@ -28,4 +28,16 @@ public class Captain {
 
     @OneToMany(mappedBy = "captain", cascade = CascadeType.ALL)
     private List<Trip> trips;
+    
+    // Constructor used in tests
+    public Captain(String name, String licenseNumber, double avgRatingScore) {
+        this.name = name;
+        this.licenseNumber = licenseNumber;
+        this.avgRatingScore = avgRatingScore;
+    }
+    
+    // Manually adding setter for id for compatibility
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

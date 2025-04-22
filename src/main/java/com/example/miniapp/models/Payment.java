@@ -27,4 +27,9 @@ public class Payment {
     @OneToOne
     @JoinColumn(name = "trip_id", referencedColumnName = "id")
     private Trip trip;
+    
+    // Manually adding setter for id for compatibility
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

@@ -28,4 +28,9 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Trip> trips;
+    
+    // Manually adding setter for id for compatibility
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

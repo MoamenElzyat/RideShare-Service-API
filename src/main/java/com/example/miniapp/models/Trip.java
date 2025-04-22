@@ -39,4 +39,9 @@ public class Trip {
 
     @OneToOne(mappedBy = "trip", cascade = CascadeType.ALL)
     private Payment payment;
+    
+    // Manually adding setter for id for compatibility
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
