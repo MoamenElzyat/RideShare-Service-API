@@ -35,12 +35,12 @@ public class RatingController {
     }
 
     @GetMapping("/findByEntity")
-    public List<Rating> findByEntity(@RequestParam Long entityId, @RequestParam String entityType) {
+    public List<Rating> findRatingsByEntity(@RequestParam Long entityId, @RequestParam String entityType) {
         return ratingService.getRatingsByEntity(entityId, entityType);
     }
 
     @GetMapping("/findAboveScore")
-    public List<Rating> findAboveScore(@RequestParam int minScore) {
+    public List<Rating> findRatingsAboveScore(@RequestParam int minScore) {
         return ratingService.findRatingsAboveScore(minScore);
     }
 }

@@ -50,7 +50,7 @@ public class PaymentController {
     }
 
     @GetMapping("/findByAmountThreshold")
-    public List<Payment> findByAmountThreshold(@RequestParam Double threshold) {
+    public List<Payment> findPaymentsWithAmountGreaterThan(@RequestParam Double threshold) {
         return paymentService.findByAmountThreshold(threshold);
     }
 }

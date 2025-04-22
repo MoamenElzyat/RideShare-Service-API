@@ -45,12 +45,12 @@ public class CustomerController {
     }
 
     @GetMapping("/findByEmailDomain")
-    public List<Customer> findByEmailDomain(@RequestParam String domain) {
+    public List<Customer> findCustomersByEmailDomain(@RequestParam String domain) {
         return customerService.findCustomersByEmailDomain(domain);
     }
 
     @GetMapping("/findByPhonePrefix")
-    public List<Customer> findByPhonePrefix(@RequestParam String prefix) {
+    public List<Customer> findCustomersByPhonePrefix(@RequestParam String prefix) {
         return customerService.findCustomersByPhonePrefix(prefix);
     }
 }
