@@ -34,14 +34,9 @@ public class RatingController {
         return "Rating deleted successfully.";
     }
 
-    @GetMapping("/findByTripAndType")
-    public List<Rating> findByTripAndType(@RequestParam Long tripId, @RequestParam String ratingType) {
-        return ratingService.getRatingsByTripAndType(tripId, ratingType);
-    }
-
-    @GetMapping("/findByMinimumRating")
-    public List<Rating> findByMinimumRating(@RequestParam int minRating) {
-        return ratingService.getRatingsByMinimumRating(minRating);
+    @GetMapping("/findByEntity")
+    public List<Rating> findRatingsByEntity(@RequestParam Long entityId, @RequestParam String entityType) {
+        return ratingService.getRatingsByEntity(entityId, entityType);
     }
 
     @GetMapping("/findAboveScore")

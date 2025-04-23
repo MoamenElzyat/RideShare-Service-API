@@ -30,15 +30,11 @@ public class RatingService {
         ratingRepository.deleteById(id);
     }
 
-    public List<Rating> getRatingsByTripAndType(Long tripId, String ratingType) {
-        return ratingRepository.findByTripIdAndRatingType(tripId, ratingType);
-    }
-
-    public List<Rating> getRatingsByMinimumRating(int minRating) {
-        return ratingRepository.findByRatingGreaterThan(minRating);
+    public List<Rating> getRatingsByEntity(Long entityId, String entityType) {
+        return ratingRepository.findByTripIdAndRatingType(entityId, entityType);
     }
 
     public List<Rating> findRatingsAboveScore(int minScore) {
-        return ratingRepository.findByRatingGreaterThan(minScore);
+        return ratingRepository.findByScoreGreaterThan(minScore);
     }
 }
