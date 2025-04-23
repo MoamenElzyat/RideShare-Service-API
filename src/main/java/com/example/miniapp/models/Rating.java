@@ -1,6 +1,8 @@
 package com.example.miniapp.models;
 
 import lombok.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -17,40 +19,33 @@ public class Rating {
     private String id;
 
     @NonNull
-    private Long tripId;
+    private Long entityId; // Updated from tripId
 
     @NonNull
-    private Integer rating;
+    private String entityType; // Added for clarity (captain, customer, trip)
+
+    @NonNull
+    @Min(1)
+    @Max(5)
+    private Integer score;
 
     private String comment;
 
     @NonNull
-    private String ratingType;
-
-    @NonNull
     private LocalDateTime ratingDate;
 
-    // Constructor used in tests
+    // Constructor for tests
     public Rating(long entityId, String entityType, int score, String comment, LocalDateTime ratingDate) {
-        this.tripId = entityId;
-        this.ratingType = entityType;
-        this.rating = score;
+        this.entityId = entityId;
+        this.entityType = entityType;
+        this.score = score;
         this.comment = comment;
         this.ratingDate = ratingDate;
     }
-    
-    // For backward compatibility with tests
-    public Integer getScore() {
-        return this.rating;
-    }
-    
-    // For backward compatibility with tests
-    public void setScore(int score) {
-        this.rating = score;
-    }
-    
-    // Manually adding setter for id for compatibility
-    public void setId(String id) {
-        this.id = id;
+    public Rating(int score) {
+        this.entityId = 1L;
+        this.entityType = "trip";
+        this.score = score;
+        this.ratingDate = LocalDateTime.now();
     }
 }

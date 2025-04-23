@@ -36,6 +36,20 @@ public class Captain {
         this.avgRatingScore = avgRatingScore;
     }
     
+    /**
+     * Logical constructor with ID for testing
+     * @param id captain ID (can be null for new captains)
+     * @param name captain name
+     * @param licenseNumber captain license number
+     * @param avgRatingScore captain's average rating
+     */
+    public Captain(Long id, String name, String licenseNumber, Double avgRatingScore) {
+        this.id = id;
+        this.name = name;
+        this.licenseNumber = licenseNumber;
+        this.avgRatingScore = avgRatingScore;
+    }
+    
     // Manually adding setter for id for compatibility
     public void setId(Long id) {
         this.id = id;

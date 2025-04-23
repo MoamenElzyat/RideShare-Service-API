@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface RatingRepository extends MongoRepository<Rating, String> {
-    List<Rating> findByTripIdAndRatingType(Long tripId, String ratingType);
+    List<Rating> findByEntityIdAndEntityType(Long entityId, String entityType);
     List<Rating> findByScoreGreaterThan(int score);
 }

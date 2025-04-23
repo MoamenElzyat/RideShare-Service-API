@@ -29,6 +29,20 @@ public class Customer {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Trip> trips;
     
+    /**
+     * Logical constructor for testing
+     * @param id customer ID (can be null for new customers)
+     * @param name customer name
+     * @param email customer email
+     * @param phoneNumber customer phone number
+     */
+    public Customer(Long id, String name, String email, String phoneNumber) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+    
     // Manually adding setter for id for compatibility
     public void setId(Long id) {
         this.id = id;
