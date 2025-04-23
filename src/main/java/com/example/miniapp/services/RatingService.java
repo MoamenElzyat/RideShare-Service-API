@@ -39,6 +39,6 @@ public class RatingService {
     }
 
     public List<Rating> findRatingsAboveScore(int minScore) {
-        return ratingRepository.findRatingsAboveScore(minScore);
+        return ratingRepository.findByRatingGreaterThan(minScore);
     }
 }

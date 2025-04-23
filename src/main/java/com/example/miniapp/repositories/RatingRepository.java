@@ -8,5 +8,4 @@ import java.util.List;
 public interface RatingRepository extends MongoRepository<Rating, String> {
     List<Rating> findByTripIdAndRatingType(Long tripId, String ratingType);
     List<Rating> findByRatingGreaterThan(int rating);
-    List<Rating> findRatingsAboveScore(int minScore);
 }
