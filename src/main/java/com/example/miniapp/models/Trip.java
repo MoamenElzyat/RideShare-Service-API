@@ -1,32 +1,23 @@
 package com.example.miniapp.models;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "trips")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
 public class Trip {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
     private LocalDateTime tripDate;
 
-    @NonNull
     private String origin;
 
-    @NonNull
     private String destination;
 
-    @NonNull
     private Double tripCost;
 
     @ManyToOne
@@ -39,6 +30,31 @@ public class Trip {
 
     @OneToOne(mappedBy = "trip", cascade = CascadeType.ALL)
     private Payment payment;
+    
+    // Default constructor
+    public Trip() {
+    }
+    
+    // Constructor with required fields
+    public Trip(LocalDateTime tripDate, String origin, String destination, Double tripCost) {
+        this.tripDate = tripDate;
+        this.origin = origin;
+        this.destination = destination;
+        this.tripCost = tripCost;
+    }
+    
+    // All-args constructor
+    public Trip(Long id, LocalDateTime tripDate, String origin, String destination, Double tripCost, 
+               Captain captain, Customer customer, Payment payment) {
+        this.id = id;
+        this.tripDate = tripDate;
+        this.origin = origin;
+        this.destination = destination;
+        this.tripCost = tripCost;
+        this.captain = captain;
+        this.customer = customer;
+        this.payment = payment;
+    }
     
     /**
      * Logical constructor for testing with all fields
@@ -60,8 +76,8 @@ public class Trip {
         this.captain = captain;
         this.customer = customer;
     }
+    
     // Constructor for tests
-
     public Trip(Long id, LocalDateTime tripDate, String origin, String destination, Double tripCost) {
         this.id = id;
         this.tripDate = tripDate;
@@ -69,14 +85,111 @@ public class Trip {
         this.destination = destination;
         this.tripCost = tripCost;
     }
+    
     public Trip(String origin, String destination, Double cost) {
         this.tripDate = LocalDateTime.now();
         this.origin = origin;
         this.destination = destination;
         this.tripCost = cost;
     }
-    // Manually adding setter for id for compatibility
+    
+    // Getters and setters
+    public Long getId() {
+        return id;
+    }
+    
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    public LocalDateTime getTripDate() {
+        return tripDate;
+    }
+    
+    public void setTripDate(LocalDateTime tripDate) {
+        this.tripDate = tripDate;
+    }
+    
+    public String getOrigin() {
+        return origin;
+    }
+    
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+    
+    public String getDestination() {
+        return destination;
+    }
+    
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+    
+    public Double getTripCost() {
+        return tripCost;
+    }
+    
+    public void setTripCost(Double tripCost) {
+        this.tripCost = tripCost;
+    }
+    
+    public Captain getCaptain() {
+        return captain;
+    }
+    
+    public void setCaptain(Captain captain) {
+        this.captain = captain;
+    }
+    
+    public Customer getCustomer() {
+        return customer;
+    }
+    
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+    
+    public Payment getPayment() {
+        return payment;
+    }
+    
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        
+        Trip trip = (Trip) o;
+        
+        if (id != null ? !id.equals(trip.id) : trip.id != null) return false;
+        if (tripDate != null ? !tripDate.equals(trip.tripDate) : trip.tripDate != null) return false;
+        if (origin != null ? !origin.equals(trip.origin) : trip.origin != null) return false;
+        if (destination != null ? !destination.equals(trip.destination) : trip.destination != null) return false;
+        return tripCost != null ? tripCost.equals(trip.tripCost) : trip.tripCost == null;
+    }
+    
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (tripDate != null ? tripDate.hashCode() : 0);
+        result = 31 * result + (origin != null ? origin.hashCode() : 0);
+        result = 31 * result + (destination != null ? destination.hashCode() : 0);
+        result = 31 * result + (tripCost != null ? tripCost.hashCode() : 0);
+        return result;
+    }
+    
+    @Override
+    public String toString() {
+        return "Trip{" +
+                "id=" + id +
+                ", tripDate=" + tripDate +
+                ", origin='" + origin + '\'' +
+                ", destination='" + destination + '\'' +
+                ", tripCost=" + tripCost +
+                '}';
     }
 }
